@@ -1,0 +1,45 @@
+.card {
+    margin: 0 10px;
+    width: 230px;
+}
+
+.card .titleWrapper p {
+    color: #5c5c5c;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.card .titleWrapper .modelWrapper {
+    display: flex;
+    font-size: 14px;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.card .titleWrapper .modelWrapper p:first-child {
+    color: black;
+    font-weight: bold;
+}
+
+.card .titleWrapper .modelWrapper p:last-child {
+    font-weight: 400;
+}
+
+.card .linksWrapper {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    color: #1a79d2;
+    letter-spacing: 1px;
+}
+
+.card .linksWrapper .link:hover {
+    text-decoration: underline;
+}

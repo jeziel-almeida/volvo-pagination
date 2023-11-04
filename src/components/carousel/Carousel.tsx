@@ -38,10 +38,10 @@ const Carousel = () => {
             </div>
             <div className={styles.buttons}>
                 <button onClick={handleLeftClick}>
-                    <Image className={styles.btnRight} src="/images/chevron-circled.svg" alt='Scroll left' width={35} height={35} />
+                    <Image className={styles.btnRight} src="/images/chevron-circled.svg" alt='Scroll left' width={40} height={40} />
                 </button>
                 <button onClick={handleRightClick}>
-                    <Image src="/images/chevron-circled.svg" alt='Scroll right' width={35} height={35} />
+                    <Image src="/images/chevron-circled.svg" alt='Scroll right' width={40} height={40} />
                 </button>
             </div>
 
