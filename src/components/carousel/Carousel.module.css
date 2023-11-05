@@ -15,6 +15,14 @@
     display: none;
 }
 
+.desktopPagination {
+    display: flex;
+}
+
+.mobilePagination {
+    display: none;
+}
+
 @media (max-width: 800px) {
     .carousel {
         width: 750px;
@@ -35,4 +43,14 @@
     .carousel {
         width: 330px;
     }
+
+    .desktopPagination {
+        display: none;
+    }
+
+    .mobilePagination {
+        display: flex;
+    }
+
 }
+

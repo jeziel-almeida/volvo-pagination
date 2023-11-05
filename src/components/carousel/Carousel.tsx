@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject, useRef } from 'react';
 import styles from './Carousel.module.css';
 import { Car } from '@/types/Car';
 import CarCard from '../carCard/CarCard';
@@ -13,24 +13,6 @@ const Carousel = ({ data } : CarouselProps) => {
   
     const carousel: RefObject<HTMLDivElement> = useRef(null);
 
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-
-        function handleResize() {
-            setWindowWidth(window.innerWidth);
-        }
-
-        // Adicione um ouvinte de redimensionamento ao carregar o componente
-        window.addEventListener('resize', handleResize);
-
-        // Lembre-se de remover o ouvinte de redimensionamento ao desmontar o componente
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-
-    }, [])
-
     return (
         <div className={styles.carouselWrapper}>
 
@@ -41,11 +23,12 @@ const Carousel = ({ data } : CarouselProps) => {
                 ))}
             </div>
             
-            {windowWidth < 460 ? (
-                <MobilePagination carousel={carousel} carsLength={data.length} />
-            ) : (
+            <div className={styles.desktopPagination}>
                 <DesktopPagination carousel={carousel} />
-            )}
+            </div>
+            <div className={styles.mobilePagination}>
+                <MobilePagination carousel={carousel} carsLength={data.length} />
+            </div>
 
         </div>
     )
