@@ -18,7 +18,7 @@ const CarCard = ({ car }: CarCardProps) => {
                     <p>{car.modelType}</p>
                 </div>
             </div>
-            <Image src={car.imageUrl} alt={`Volvo ${car.modelName}`} priority={car.imageUrl === '/images/xc90_recharge.jpg' ? true : false} width={230} height={180} />
+            <Image src={car.imageUrl} alt={`Volvo ${car.modelName}`} priority={true} width={230} height={180} />
             <div className={styles.linksWrapper}>
                 <Link className={styles.link} href={'/learn/' + car.id}>
                     Learn &gt;
