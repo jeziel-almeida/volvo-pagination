@@ -1,9 +1,9 @@
-import { RefObject, useRef } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import styles from './Carousel.module.css';
 import { Car } from '@/types/Car';
 import CarCard from '../carCard/CarCard';
 import DesktopPagination from '../desktopPagination/DesktopPagination';
-
+import MobilePagination from '../mobilePagination/MobilePagination';
 
 interface CarouselProps {
     data: Car[];
@@ -12,6 +12,24 @@ interface CarouselProps {
 const Carousel = ({ data } : CarouselProps) => {
   
     const carousel: RefObject<HTMLDivElement> = useRef(null);
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+
+        function handleResize() {
+            setWindowWidth(window.innerWidth);
+        }
+
+        // Adicione um ouvinte de redimensionamento ao carregar o componente
+        window.addEventListener('resize', handleResize);
+
+        // Lembre-se de remover o ouvinte de redimensionamento ao desmontar o componente
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+
+    }, [])
 
     return (
         <div className={styles.carouselWrapper}>
@@ -23,7 +41,11 @@ const Carousel = ({ data } : CarouselProps) => {
                 ))}
             </div>
             
-            <DesktopPagination carousel={carousel} />
+            {windowWidth < 460 ? (
+                <MobilePagination carousel={carousel} carsLength={data.length} />
+            ) : (
+                <DesktopPagination carousel={carousel} />
+            )}
 
         </div>
     )

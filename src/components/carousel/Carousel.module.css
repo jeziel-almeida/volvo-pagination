@@ -26,3 +26,13 @@
         width: 500px;
     }
 }
+
+@media (max-width: 460px) {
+    
+    .carouselWrapper h1 {
+        font-size: 24px;
+    }
+    .carousel {
+        width: 330px;
+    }
+}
