@@ -11,16 +11,16 @@ const DesktopPagination = ({ carousel }: DesktopPaginationProps) => {
     const handleLeftClick = (e: MouseEvent) => {
         e.preventDefault();
         if (carousel.current) {
-            carousel.current.scrollLeft -= carousel.current.offsetWidth;
-            //carousel.current.scrollLeft -= 250;
+            //carousel.current.scrollLeft -= carousel.current.offsetWidth;
+            carousel.current.scrollLeft -= 250;
         }
     }
 
     const handleRightClick = (e: MouseEvent) => {
         e.preventDefault();
         if (carousel.current) {
-            carousel.current.scrollLeft += carousel.current.offsetWidth;
-            //carousel.current.scrollLeft += 250;
+            //carousel.current.scrollLeft += carousel.current.offsetWidth;
+            carousel.current.scrollLeft += 250;
         }
     }
 
