@@ -1,0 +1,18 @@
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2rem;
+}
+
+.buttons button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.buttons .btnRight {
+    transform: rotate(180deg);
+}

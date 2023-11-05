@@ -1,8 +1,9 @@
-import { MouseEvent, RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject, useRef } from 'react';
 import styles from './Carousel.module.css';
 import { Car } from '@/types/Car';
 import CarCard from '../carCard/CarCard';
-import Image from 'next/image';
+import DesktopPagination from '../desktopPagination/DesktopPagination';
+
 
 interface CarouselProps {
     data: Car[];
@@ -11,23 +12,6 @@ interface CarouselProps {
 const Carousel = ({ data } : CarouselProps) => {
   
     const carousel: RefObject<HTMLDivElement> = useRef(null);
-
-    
-    const handleLeftClick = (e: MouseEvent) => {
-        e.preventDefault();
-        if(carousel.current) {
-            carousel.current.scrollLeft -= carousel.current.offsetWidth;
-            //carousel.current.scrollLeft -= 250;
-        }
-    }
-
-    const handleRightClick = (e: MouseEvent) => {
-        e.preventDefault();
-        if(carousel.current) {
-            carousel.current.scrollLeft += carousel.current.offsetWidth;
-            //carousel.current.scrollLeft += 250;
-        }
-    }
 
     return (
         <div className={styles.carouselWrapper}>
@@ -38,14 +22,8 @@ const Carousel = ({ data } : CarouselProps) => {
                     <CarCard car={car} key={car.id} />
                 ))}
             </div>
-            <div className={styles.buttons}>
-                <button onClick={handleLeftClick}>
-                    <Image className={styles.btnRight} src="/images/chevron-circled.svg" alt='Scroll left' width={40} height={40} />
-                </button>
-                <button onClick={handleRightClick}>
-                    <Image src="/images/chevron-circled.svg" alt='Scroll right' width={40} height={40} />
-                </button>
-            </div>
+            
+            <DesktopPagination carousel={carousel} />
 
         </div>
     )
