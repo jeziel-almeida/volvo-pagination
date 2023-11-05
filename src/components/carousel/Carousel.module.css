@@ -11,6 +11,10 @@
     scroll-behavior: smooth;
 }
 
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
 .buttons {
     width: 100%;
     display: flex;
@@ -28,4 +32,16 @@
 
 .buttons .btnRight {
     transform: rotate(180deg);
+}
+
+@media (max-width: 800px) {
+    .carousel {
+        width: 750px;
+    }
+}
+
+@media (max-width: 640px) {
+    .carousel {
+        width: 500px;
+    }
 }

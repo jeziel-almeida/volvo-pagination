@@ -1,38 +1,40 @@
-import { useEffect, useState } from 'react';
+import { MouseEvent, RefObject, useEffect, useRef, useState } from 'react';
 import styles from './Carousel.module.css';
 import { Car } from '@/types/Car';
 import CarCard from '../carCard/CarCard';
 import Image from 'next/image';
 
-const Carousel = () => {
+interface CarouselProps {
+    data: Car[];
+}
 
-    const [cars, setCars] = useState<Car[]>([]);
+const Carousel = ({ data } : CarouselProps) => {
+  
+    const carousel: RefObject<HTMLDivElement> = useRef(null);
 
-    useEffect(() => {
-
-        const fetchData = async () => {
-            const res = await fetch('http://localhost:3000/api/cars');
-            const data = await res.json();
-            setCars(data);
+    
+    const handleLeftClick = (e: MouseEvent) => {
+        e.preventDefault();
+        if(carousel.current) {
+            carousel.current.scrollLeft -= carousel.current.offsetWidth;
+            //carousel.current.scrollLeft -= 250;
         }
-        fetchData();
-
-    }, [])
-
-    const handleLeftClick = () => {
-
     }
 
-    const handleRightClick = () => {
-
+    const handleRightClick = (e: MouseEvent) => {
+        e.preventDefault();
+        if(carousel.current) {
+            carousel.current.scrollLeft += carousel.current.offsetWidth;
+            //carousel.current.scrollLeft += 250;
+        }
     }
 
     return (
         <div className={styles.carouselWrapper}>
 
             <h1>Todos os modelos Recharge</h1>
-            <div className={styles.carousel}>
-                {cars.map((car) => (
+            <div className={styles.carousel} ref={carousel}>
+                {data.map((car) => (
                     <CarCard car={car} key={car.id} />
                 ))}
             </div>
