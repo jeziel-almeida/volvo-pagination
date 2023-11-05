@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
 
     const fetchData = async () => {
-      const res = await fetch('http://localhost:3000/api/cars');
+      const res = await fetch('https://volvo-pagination.vercel.app/api/cars');
       const data = await res.json();
       setCars(data);
     }
