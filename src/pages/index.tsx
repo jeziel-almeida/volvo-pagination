@@ -2,25 +2,16 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Carousel from '@/components/carousel/Carousel'
-import { useEffect, useState } from 'react'
 import { Car } from '@/types/Car'
+import { loadCars } from '@/service/LoadCars'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+interface HomeProps {
+  data: Car[];
+}
 
-  const [cars, setCars] = useState<Car[]>([]);
-
-  useEffect(() => {
-
-    const fetchData = async () => {
-      const res = await fetch(process.env.NEXT_PUBLIC_URL ?? "");
-      const data = await res.json();
-      setCars(data);
-    }
-    fetchData();
-
-  }, [])
+export default function Home({ data }: HomeProps) {
 
   return (
     <>
@@ -32,8 +23,18 @@ export default function Home() {
       </Head>
 
       <main className={`${styles.main} ${inter.className}`}>
-        <Carousel data={cars} />
+        <Carousel data={data} />
       </main>
     </>
   )
+}
+
+export const getStaticProps = async () => {
+  const data = await loadCars();
+
+  return {
+    props: {
+      data
+    }
+  }
 }
