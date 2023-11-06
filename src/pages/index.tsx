@@ -1,11 +1,8 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Carousel from '@/components/carousel/Carousel'
 import { Car } from '@/types/Car'
 import { loadCars } from '@/service/LoadCars'
-
-const inter = Inter({ subsets: ['latin'] })
 
 interface HomeProps {
   data: Car[];
@@ -22,7 +19,7 @@ export default function Home({ data }: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={`${styles.main} ${inter.className}`}>
+      <main className={styles.main}>
         <Carousel data={data} />
       </main>
     </>
