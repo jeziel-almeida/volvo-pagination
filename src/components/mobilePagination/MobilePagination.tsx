@@ -24,28 +24,28 @@ const MobilePagination = ({ carousel, carsLength }: MobilePaginationProps) => {
         if(scrollNumber) {
             if(scrollNumber < 80) carousel.current.scrollLeft = 0;
             if(scrollNumber >= 80 && scrollNumber < 330) {
-                carousel.current.scrollLeft = 250;
+                carousel.current.scrollLeft = 210;
             }
             if(scrollNumber >= 330 && scrollNumber < 580) {
-                carousel.current.scrollLeft = 500;
+                carousel.current.scrollLeft = 460;
             }
             if(scrollNumber >= 580 && scrollNumber < 830) {
-                carousel.current.scrollLeft = 750;
+                carousel.current.scrollLeft = 710;
             }
             if(scrollNumber >= 830 && scrollNumber < 1080) {
-                carousel.current.scrollLeft = 1000;
+                carousel.current.scrollLeft = 960;
             }
             if(scrollNumber >= 1080 && scrollNumber < 1330) {
-                carousel.current.scrollLeft = 1250;
+                carousel.current.scrollLeft = 1210;
             }
             if(scrollNumber >= 1330 && scrollNumber < 1580) {
-                carousel.current.scrollLeft = 1500;
+                carousel.current.scrollLeft = 1460;
             }
             if(scrollNumber >= 1580 && scrollNumber < 1830) {
-                carousel.current.scrollLeft = 1750;
+                carousel.current.scrollLeft = 1710;
             }
             if(scrollNumber >= 1830 && scrollNumber < 2080) {
-                carousel.current.scrollLeft = 2000;
+                carousel.current.scrollLeft = 1960;
             }
         }
     })
