@@ -29,9 +29,11 @@ const MobilePagination = ({ carousel, carouselItemsLength, carouselWidth, cardWi
 
     useEffect(() => {
 
-        carousel.current?.addEventListener('touchend', (event) => {
+        carousel.current?.addEventListener('scrollend', () => {
 
-            if(event.type === 'touchend') {
+            const clientWidth = carousel.current?.clientWidth
+
+            if(clientWidth && clientWidth < 460) {
 
                 const scrollNumber = carousel.current?.scrollLeft;
         
