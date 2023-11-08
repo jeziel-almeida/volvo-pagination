@@ -10,42 +10,51 @@ const MobilePagination = ({ carousel, carsLength }: MobilePaginationProps) => {
 
     const [currentBtn, setCurrentBtn] = useState(0);
 
+    const carouselWidth = 330;
+    const cardWidth = 250;
+    const sidesWidth = carouselWidth - cardWidth;
+    const secondCardStart = cardWidth - (sidesWidth / 2);
+
     const handleBtnClick = (actualBtn: number) => {
         setCurrentBtn(actualBtn);
         if(carousel.current) {
-            carousel.current.scrollLeft = actualBtn * 250;
+            if(actualBtn === 0) {
+                carousel.current.scrollLeft = 0;
+            } else {
+                carousel.current.scrollLeft = (actualBtn * cardWidth) - (sidesWidth / 2);
+            }
+            
         }
     }
 
     carousel.current?.addEventListener('scrollend', () => {
         const scrollNumber = carousel.current?.scrollLeft;
-        console.log(scrollNumber);
 
         if(scrollNumber) {
-            if(scrollNumber < 80) carousel.current.scrollLeft = 0;
-            if(scrollNumber >= 80 && scrollNumber < 330) {
-                carousel.current.scrollLeft = 210;
-            }
-            if(scrollNumber >= 330 && scrollNumber < 580) {
-                carousel.current.scrollLeft = 460;
-            }
-            if(scrollNumber >= 580 && scrollNumber < 830) {
-                carousel.current.scrollLeft = 710;
-            }
-            if(scrollNumber >= 830 && scrollNumber < 1080) {
-                carousel.current.scrollLeft = 960;
-            }
-            if(scrollNumber >= 1080 && scrollNumber < 1330) {
-                carousel.current.scrollLeft = 1210;
-            }
-            if(scrollNumber >= 1330 && scrollNumber < 1580) {
-                carousel.current.scrollLeft = 1460;
-            }
-            if(scrollNumber >= 1580 && scrollNumber < 1830) {
-                carousel.current.scrollLeft = 1710;
-            }
-            if(scrollNumber >= 1830 && scrollNumber < 2080) {
-                carousel.current.scrollLeft = 1960;
+
+            if(scrollNumber < sidesWidth) {
+                carousel.current.scrollLeft = 0;
+                setCurrentBtn(0);
+            } else {
+
+                for(let i = 0; i < carsLength; i++) {
+                    if(scrollNumber >= sidesWidth + (i * cardWidth) && scrollNumber < carouselWidth + (i * cardWidth)) {
+                        carousel.current.scrollLeft = secondCardStart + (i * cardWidth);
+                        setCurrentBtn( i + 1 );
+                        break;
+                    }
+                }
+
+                // let next = true;
+                // let i = 0;
+                // while(next) {
+                //     if(scrollNumber >= sidesWidth + (i * cardWidth) && scrollNumber < carouselWidth + (i * cardWidth)) {
+                //         carousel.current.scrollLeft = secondCardStart + (i * cardWidth);
+                //         setCurrentBtn( i + 1 );
+                //         next = false;
+                //     }
+                //     i++;
+                // }
             }
         }
     })
