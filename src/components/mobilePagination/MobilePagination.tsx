@@ -56,6 +56,8 @@ const MobilePagination = ({ carousel, carsLength }: MobilePaginationProps) => {
                 //     i++;
                 // }
             }
+        } else {
+            setCurrentBtn(0);
         }
     })
     
