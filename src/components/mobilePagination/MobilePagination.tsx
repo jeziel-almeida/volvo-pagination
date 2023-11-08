@@ -3,15 +3,15 @@ import styles from './MobilePagination.module.css';
 
 interface MobilePaginationProps {
     carousel: RefObject<HTMLDivElement>;
-    carsLength: number;
+    carouselItemsLength: number;
+    carouselWidth: number;
+    cardWidth: number;
 }
 
-const MobilePagination = ({ carousel, carsLength }: MobilePaginationProps) => {
+const MobilePagination = ({ carousel, carouselItemsLength, carouselWidth, cardWidth }: MobilePaginationProps) => {
 
     const [currentBtn, setCurrentBtn] = useState(0);
 
-    const carouselWidth = 330;
-    const cardWidth = 250;
     const sidesWidth = carouselWidth - cardWidth;
     const secondCardStart = cardWidth - (sidesWidth / 2);
 
@@ -39,7 +39,7 @@ const MobilePagination = ({ carousel, carsLength }: MobilePaginationProps) => {
                     setCurrentBtn(0);
                 } else {
     
-                    for(let i = 0; i < carsLength; i++) {
+                    for(let i = 0; i < carouselItemsLength; i++) {
                         if(scrollNumber >= sidesWidth + (i * cardWidth) && scrollNumber < carouselWidth + (i * cardWidth)) {
                             carousel.current.scrollLeft = secondCardStart + (i * cardWidth);
                             setCurrentBtn( i + 1 );
@@ -57,7 +57,7 @@ const MobilePagination = ({ carousel, carsLength }: MobilePaginationProps) => {
     
     return (
         <div className={styles.mobilePagination}>
-            {Array.from({length: carsLength}).map((_, idx) => {
+            {Array.from({length: carouselItemsLength}).map((_, idx) => {
                 return (
                     <button 
                         key={idx}

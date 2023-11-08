@@ -1,9 +1,9 @@
-import { RefObject, useRef } from 'react';
-import styles from './Carousel.module.css';
 import { Car } from '@/types/Car';
+import { RefObject, useRef } from 'react';
 import CarCard from '../carCard/CarCard';
 import DesktopPagination from '../desktopPagination/DesktopPagination';
 import MobilePagination from '../mobilePagination/MobilePagination';
+import styles from './Carousel.module.css';
 
 interface CarouselProps {
     data: Car[];
@@ -27,7 +27,7 @@ const Carousel = ({ data } : CarouselProps) => {
                 <DesktopPagination carousel={carousel} />
             </div>
             <div className={styles.mobilePagination}>
-                <MobilePagination carousel={carousel} carsLength={data.length} />
+                <MobilePagination carousel={carousel} carouselItemsLength={data.length} carouselWidth={330} cardWidth={250} />
             </div>
 
         </div>
