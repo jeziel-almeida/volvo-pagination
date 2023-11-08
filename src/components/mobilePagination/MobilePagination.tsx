@@ -29,26 +29,30 @@ const MobilePagination = ({ carousel, carouselItemsLength, carouselWidth, cardWi
 
     useEffect(() => {
 
-        carousel.current?.addEventListener('scrollend', () => {
-            const scrollNumber = carousel.current?.scrollLeft;
-    
-            if(scrollNumber) {
-    
-                if(scrollNumber < sidesWidth) {
-                    carousel.current.scrollLeft = 0;
-                    setCurrentBtn(0);
-                } else {
-    
-                    for(let i = 0; i < carouselItemsLength; i++) {
-                        if(scrollNumber >= sidesWidth + (i * cardWidth) && scrollNumber < carouselWidth + (i * cardWidth)) {
-                            carousel.current.scrollLeft = secondCardStart + (i * cardWidth);
-                            setCurrentBtn( i + 1 );
-                            break;
+        carousel.current?.addEventListener('touchend', (event) => {
+
+            if(event.type === 'touchend') {
+
+                const scrollNumber = carousel.current?.scrollLeft;
+        
+                if(scrollNumber) {
+        
+                    if(scrollNumber < sidesWidth) {
+                        carousel.current.scrollLeft = 0;
+                        setCurrentBtn(0);
+                    } else {
+        
+                        for(let i = 0; i < carouselItemsLength; i++) {
+                            if(scrollNumber >= sidesWidth + (i * cardWidth) && scrollNumber < carouselWidth + (i * cardWidth)) {
+                                carousel.current.scrollLeft = secondCardStart + (i * cardWidth);
+                                setCurrentBtn( i + 1 );
+                                break;
+                            }
                         }
                     }
+                } else {
+                    setCurrentBtn(0);
                 }
-            } else {
-                setCurrentBtn(0);
             }
         })
 
